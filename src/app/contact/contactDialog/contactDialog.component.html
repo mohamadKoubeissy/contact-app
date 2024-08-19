@@ -1,0 +1,43 @@
+<div class="w-full h-fit">
+
+  <mat-dialog-content class="mat-typography">
+
+    <div class="w-full h-fit flex flex-col items-center justify-center p-6 border-2 rounded-3xl space-y-1">
+
+      <!-- form title  -->
+      <span class="text-2xl " mat-dialog-title>{{data.isEdit ? 'Edit' : 'Add'}} Contact</span>
+
+      <!-- form content -->
+      <form class="" [formGroup]="contactForm">
+
+        <div class="w-full flex flex-col space-y-3">
+
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" formControlName="name" required>
+            <mat-error *ngIf="name?.hasError('required')">Name is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Email" formControlName="email" required>
+            <mat-error *ngIf="email?.hasError('required')">email is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input matInput type="tel" placeholder="phone" formControlName="phone" required>
+            <mat-error *ngIf="phone?.hasError('required')">phone is required</mat-error>
+          </mat-form-field>
+
+        </div>
+
+      </form>
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="close()">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">{{data.isEdit ? 'Save' : 'Add'}}</button>
+  </mat-dialog-actions>
+</div>
