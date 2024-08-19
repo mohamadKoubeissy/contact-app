@@ -23,7 +23,7 @@ export class contactDialogComponent implements OnInit {
   }
 
   get name() {
-    return this.contactForm.get('name');
+    return this.contactForm.get('name') ;
   }
 
   get email() {
