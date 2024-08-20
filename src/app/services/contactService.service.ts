@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ContactModel } from '../models/contactModel';
 import { BehaviorSubject, map, Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class ContactService {
   contacts : ContactModel[] = [this.contact1 , this.contact2 , this.contact3] ;
   private contactsSubject = new BehaviorSubject<ContactModel[]>(this.contacts);
 
-  constructor() { }
+  constructor(private firestore: AngularFirestore) { }
 
   getContacts() {
     return this.contactsSubject.asObservable();
