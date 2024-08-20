@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ContactModel } from '../models/contactModel';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
 
-  contact1 : ContactModel = {
+  /* contact1 : ContactModel = {
     id : 1 ,
     name : 'name1' ,
     email : 'email1@gmail.com',
@@ -61,6 +61,43 @@ export class ContactService {
     return this.contactsSubject.asObservable().pipe(
       map(contacts => contacts.filter(contact => contact.name.toLowerCase().includes(name.toLowerCase())))
     );
+  } */
+
+  private contactsCollection: AngularFirestoreCollection<ContactModel>;
+
+  constructor(private firestore: AngularFirestore) {
+    this.contactsCollection = this.firestore.collection<ContactModel>('contacts');
   }
 
+  getContacts(): Observable<ContactModel[]> {
+    return this.contactsCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as ContactModel;
+        const ID = a.payload.doc.id;
+        return { ID, ...data };
+      }))
+    );
+  }
+
+  addContact(contact: ContactModel): void {
+    const id = this.firestore.createId(); // Generate a unique ID
+    contact.id = id; // Assign the ID to the contact
+    this.contactsCollection.doc(id).set(contact);
+  }
+
+  updateContact(contact: ContactModel): void {
+    if (contact.id) {
+      this.contactsCollection.doc(contact.id).update(contact);
+    }
+  }
+
+  deleteContact(id: string): void {
+    this.contactsCollection.doc(id).delete();
+  }
+
+  searchContact(name: string): Observable<ContactModel[]> {
+    return this.getContacts().pipe(
+      map(contacts => contacts.filter(contact => contact.name.toLowerCase().includes(name.toLowerCase())))
+    );
+  }
 }

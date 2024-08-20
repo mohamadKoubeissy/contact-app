@@ -16,9 +16,10 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { contactDialogComponent } from './contact/contactDialog/contactDialog.component';
 import { ContactDetailsComponent } from './contact/contactDetails/contactDetails.component';
 
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { Environment } from 'src/Environment/environment';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { Environment } from '../Environment/environment'; // Adjust the path if needed
 
 @NgModule({
   declarations: [
@@ -39,8 +40,7 @@ import { Environment } from '../Environment/environment'; // Adjust the path if 
     MatTableModule,
     MatIconModule,
     MatDialogModule,
-    AngularFireModule.initializeApp(Environment.firebaseConfig),
-    AngularFirestoreModule, // Firestore module
+    AngularFireModule.initializeApp(Environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]

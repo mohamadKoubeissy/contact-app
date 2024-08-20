@@ -1,7 +1,7 @@
-<div class="w-full flex flex-row">
+<div class="w-fit flex flex-row space-x-24">
 
   <!-- section 1 (contacts table) -->
-  <div class="w-1/2 h-fit flex flex-col space-y-10">
+  <div class="w-fit h-fit flex flex-col space-y-10">
 
     <!-- title -->
     <span class="text-4xl">Contacts Table</span>
@@ -75,7 +75,7 @@
   </div>
 
   <!-- section 2 (contact details) -->
-  <div *ngIf="showContactDetails" class="w-1/2 h-full flex">
+  <div *ngIf="showContactDetails" class="w-fit h-full flex">
     <app-contactDetails class="w-1/2" [contact]="viewContactDetails" (hideContactDetails)="hideDetails()"></app-contactDetails>
   </div>
 
