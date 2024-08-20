@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ContactModel } from '../models/contactModel';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-
+import { randFullName, randEmail, randPhoneNumber } from '@ngneat/falso';
 @Injectable({
   providedIn: 'root'
 })
@@ -67,6 +67,24 @@ export class ContactService {
 
   constructor(private firestore: AngularFirestore) {
     this.contactsCollection = this.firestore.collection<ContactModel>('contacts');
+    this.generateRandomContact();
+  }
+
+  generateRandomContact(){
+
+    for(let i = 0 ; i < 5 ; i++ ){
+      let contactTemp : ContactModel = {
+        id : this.firestore.createId(),
+        name : randFullName(),
+        email : randEmail(),
+        phone : randPhoneNumber()
+      };
+      const id = this.firestore.createId();
+      contactTemp.id = id;
+      this.contactsCollection.doc(id).set(contactTemp);
+    }
+
+
   }
 
   getContacts(): Observable<ContactModel[]> {
@@ -80,8 +98,8 @@ export class ContactService {
   }
 
   addContact(contact: ContactModel): void {
-    const id = this.firestore.createId(); // Generate a unique ID
-    contact.id = id; // Assign the ID to the contact
+    const id = this.firestore.createId();
+    contact.id = id;
     this.contactsCollection.doc(id).set(contact);
   }
 
