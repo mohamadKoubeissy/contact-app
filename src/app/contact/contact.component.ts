@@ -73,4 +73,8 @@ export class contactComponent implements OnInit {
   hideDetails(){
     this.showContactDetails = false ;
   }
+
+  generateContacts(){
+    this.contactService.generateRandomContact();
+  }
 }

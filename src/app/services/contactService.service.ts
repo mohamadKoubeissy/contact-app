@@ -67,7 +67,6 @@ export class ContactService {
 
   constructor(private firestore: AngularFirestore) {
     this.contactsCollection = this.firestore.collection<ContactModel>('contacts');
-    this.generateRandomContact();
   }
 
   generateRandomContact(){
