@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ContactService } from '../services/contactService.service';
 import { ContactModel } from '../models/contactModel';
@@ -18,6 +18,10 @@ export class contactComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'email', 'phone' , 'action'];
   dataSource = new MatTableDataSource<ContactModel>();
   searchValue = '';
+
+  viewContactDetails !: ContactModel ;
+
+  showContactDetails !: boolean ;
 
   constructor(private contactService : ContactService , public dialog: MatDialog) {
 
@@ -59,5 +63,14 @@ export class contactComponent implements OnInit {
     this.contactService.searchContact(name).subscribe(data => {
       this.dataSource.data = data;
     });
+  }
+
+  viewDetails(contact: ContactModel){
+    this.showContactDetails = true ;
+    this.viewContactDetails = contact;
+  }
+
+  hideDetails(){
+    this.showContactDetails = false ;
   }
 }

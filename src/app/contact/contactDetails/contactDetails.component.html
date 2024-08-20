@@ -1,0 +1,35 @@
+<div class="w-full flex flex-col">
+
+  <!-- title -->
+  <div class="w-full flex flex-row justify-between">
+    <span class="text-4xl">Contact Details </span>
+    <button class="text-5xl" (click)="close()">&times;</button>
+  </div>
+
+  <!-- details -->
+  <div class="w-full h-fit flex flex-col items-center justify-center space-y-5">
+    <img class="w-48 h-48 rounded-full" src="../../../assets/images/accountPic.svg" alt="">
+    <div class="flex flex-col space-y-5 self-start">
+
+      <!-- name -->
+      <div class="flex flex-row">
+        <span class="text-xl font-medium">Name :&nbsp;</span>
+        <span class="text-xl">{{contact.name}}</span>
+      </div>
+
+      <!-- email -->
+      <div class="flex flex-row">
+        <span class="text-xl font-medium">Email :&nbsp;</span>
+        <span class="text-xl">{{contact.email}}</span>
+      </div>
+
+      <!-- phone -->
+      <div class="flex flex-row">
+        <span class="text-xl font-medium">Phone :&nbsp;</span>
+        <span class="text-xl">{{contact.phone}}</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>

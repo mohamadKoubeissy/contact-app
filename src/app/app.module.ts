@@ -14,13 +14,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule} from '@angular/material/dialog';
 import { contactDialogComponent } from './contact/contactDialog/contactDialog.component';
+import { ContactDetailsComponent } from './contact/contactDetails/contactDetails.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     contactComponent,
-    contactDialogComponent
+    contactDialogComponent,
+    ContactDetailsComponent,
    ],
   imports: [
     BrowserModule,
