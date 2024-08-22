@@ -15,9 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule} from '@angular/material/dialog';
 import { contactDialogComponent } from './contact/contactDialog/contactDialog.component';
 import { ContactDetailsComponent } from './contact/contactDetails/contactDetails.component';
+import {MatMenuModule} from '@angular/material/menu';
 
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { Environment } from 'src/Environment/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 
@@ -40,6 +39,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     MatTableModule,
     MatIconModule,
     MatDialogModule,
+    MatMenuModule,
     AngularFireModule.initializeApp(Environment.firebase)
   ],
   providers: [],

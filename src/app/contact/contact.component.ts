@@ -77,4 +77,8 @@ export class contactComponent implements OnInit {
   generateContacts(){
     this.contactService.generateRandomContact();
   }
+
+  openUserInfo(){
+
+  }
 }
