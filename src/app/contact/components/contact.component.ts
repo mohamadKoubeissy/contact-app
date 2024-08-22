@@ -6,6 +6,10 @@ import { ContactModel } from '../../models/contactModel';
 import { contactDialogComponent } from './contactDialog/contactDialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from 'src/app/authentication/services/authService.service';
+import { Observable } from 'rxjs';
+import { User } from '@firebase/auth-types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -23,12 +27,16 @@ export class contactComponent implements OnInit {
 
   showContactDetails !: boolean ;
 
-  constructor(private contactService : ContactService , public dialog: MatDialog) {}
+  currentUser$ !: Observable<User | null>;
+
+  constructor(private contactService : ContactService , public dialog: MatDialog , private authService : AuthService, private router : Router) {}
 
   ngOnInit() {
     this.contactService.getContacts().subscribe(data => {
       this.dataSource.data = data;
     });
+
+    this.currentUser$ = this.authService.getCurrentUser();
   }
 
   openDialog(isEdit: boolean, contact?: ContactModel) {
@@ -76,7 +84,10 @@ export class contactComponent implements OnInit {
     this.contactService.generateRandomContact();
   }
 
-  openUserInfo(){
-
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['authentication/login']);
   }
+
+
 }

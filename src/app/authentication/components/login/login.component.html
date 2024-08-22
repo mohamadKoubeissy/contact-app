@@ -1,0 +1,48 @@
+<div class="w-fit h-screen flex items-center justify-center">
+
+  <div class="flex flex-col space-y-3 border-2 border-black px-16 pb-16 rounded-2xl">
+
+    <form class="flex flex-col space-y-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <div class="flex flex-col items-center justify-center py-5">
+        <span class="text-3xl">Login</span>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Enter your email">
+        <mat-error *ngIf="email?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="email?.hasError('email')">
+          Invalid email format
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="password?.hasError('minlength')">
+          Password must be at least 6 characters long
+        </mat-error>
+      </mat-form-field>
+
+
+      <button mat-raised-button color="primary" type="submit" >Login</button>
+
+    </form>
+
+    <span>
+      Not registered yet?
+      <button (click)="navigateToRegister()" class="text-blue-600 underline hover:text-blue-800 focus:outline-none">Signup</button>
+    </span>
+
+  </div>
+
+</div>

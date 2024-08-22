@@ -3,20 +3,33 @@
 
   <span class="text-4xl font-medium">Contact App</span>
 
-  <div class="flex pt-1 rounded-full border-2 border-black cursor-pointer hover:shadow-lg hover:shadow-gray-300">
+  <div class="flex flex-row space-x-5 items-center justify-center">
 
-    <button class="w-fit h-fit" [matMenuTriggerFor]="menu">
-      <svg class="w-14 h-14 rounded-full" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke:#020202;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs><circle class="cls-1" cx="12" cy="7.25" r="5.73"></circle><path class="cls-1" d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05"></path></g>
-      </svg>
-    </button>
-    <mat-menu class="w-96" #menu="matMenu">
-      <div class="flex flex-col space-y-5 text-xl py-5 pl-3">
-        <span>Item 1</span>
-        <span>Item 2</span>
-      </div>
-    </mat-menu>
+    <div *ngIf="currentUser$ | async as user ; else noUser" class="flex pt-1 rounded-full border-2 border-black cursor-pointer hover:shadow-lg hover:shadow-gray-300">
+
+      <button class="w-fit h-fit" [matMenuTriggerFor]="menu">
+        <svg class="w-14 h-14 rounded-full" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke:#020202;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs><circle class="cls-1" cx="12" cy="7.25" r="5.73"></circle><path class="cls-1" d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05"></path></g>
+        </svg>
+      </button>
+      <mat-menu class="w-96" #menu="matMenu">
+        <div class="flex flex-col space-y-5 text-xl py-5 pl-3">
+          <span>Name : {{ user.displayName }}</span>
+          <span>Email : {{ user.email }}</span>
+        </div>
+      </mat-menu>
+
+    </div>
+
+    <button *ngIf="currentUser$ | async as user ;" mat-raised-button color="primary" (click)="logout()">Logout</button>
+
+    <ng-template #noUser>
+      <p class="text-red-600">No user is logged in.</p>
+    </ng-template>
+
   </div>
+
+
 
 </div>
 
