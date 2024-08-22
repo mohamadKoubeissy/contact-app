@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ContactService } from '../services/contactService.service';
-import { ContactModel } from '../models/contactModel';
+import { ContactModel } from '../../models/contactModel';
 
 import { contactDialogComponent } from './contactDialog/contactDialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,9 +23,7 @@ export class contactComponent implements OnInit {
 
   showContactDetails !: boolean ;
 
-  constructor(private contactService : ContactService , public dialog: MatDialog) {
-
-  }
+  constructor(private contactService : ContactService , public dialog: MatDialog) {}
 
   ngOnInit() {
     this.contactService.getContacts().subscribe(data => {

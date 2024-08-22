@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ContactModel } from '../models/contactModel';
+import { ContactModel } from '../../models/contactModel';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { randFullName, randEmail, randPhoneNumber } from '@ngneat/falso';
