@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/authentication/services/authService.service
 import { Observable } from 'rxjs';
 import { User } from '@firebase/auth-types';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-contact',
@@ -29,7 +30,7 @@ export class contactComponent implements OnInit {
 
   currentUser$ !: Observable<User | null>;
 
-  constructor(private contactService : ContactService , public dialog: MatDialog , private authService : AuthService, private router : Router) {}
+  constructor(private contactService : ContactService , public dialog: MatDialog , private authService : AuthService, private router : Router,private translocoService: TranslocoService) {}
 
   ngOnInit() {
     this.contactService.getContacts().subscribe(data => {
@@ -89,5 +90,7 @@ export class contactComponent implements OnInit {
     this.router.navigate(['authentication/login']);
   }
 
-
+  changeLang(lang: string) {
+    this.translocoService.setActiveLang(lang);
+  }
 }

@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import { ContactRoutingModule } from './contact-routing.module';
+import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoRootModule } from '../transloco-root/transloco-root.module';
 
 @NgModule({
   imports: [
@@ -28,6 +30,8 @@ import { ContactRoutingModule } from './contact-routing.module';
     MatIconModule,
     MatDialogModule,
     MatMenuModule,
+    TranslocoModule,
+    TranslocoRootModule,
   ],
   declarations: [contactComponent , contactDialogComponent , ContactDetailsComponent]
 })

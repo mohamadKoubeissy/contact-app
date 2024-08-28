@@ -1,0 +1,12 @@
+{
+  "AppTitle": "Kontakt-App",
+  "ContactsTable" : "Kontakttabelle",
+  "AddContact" : "Kontakt hinzufügen",
+  "Generate" : "Erzeugen",
+  "ID" : "AUSWEIS",
+  "Name" : "Name",
+  "Email" : "E-Mail",
+  "Phone" : "Telefon",
+  "Logout" : "Abmelden"
+
+}

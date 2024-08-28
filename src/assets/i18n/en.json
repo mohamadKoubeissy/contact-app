@@ -1,0 +1,11 @@
+{
+  "AppTitle": "Contact App",
+  "ContactsTable" : "Contacts Table",
+  "AddContact" : "Add Contact",
+  "Generate" : "genrate",
+  "ID" : "ID",
+  "Name" : "Name",
+  "Email" : "Email",
+  "Phone" : "Phone",
+  "Logout" : "Logout"
+}

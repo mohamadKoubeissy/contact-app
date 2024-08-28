@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Environment } from 'src/Environment/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { ContactModule } from './contact/contact.module';
+import { TranslocoRootModule } from './transloco-root/transloco-root.module';
+import { TranslocoModule } from '@ngneat/transloco';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +22,8 @@ import { ContactModule } from './contact/contact.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     ContactModule,
+    TranslocoModule,
+    TranslocoRootModule,
     AngularFireModule.initializeApp(Environment.firebase)
   ],
   providers: [],
