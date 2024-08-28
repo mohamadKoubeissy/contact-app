@@ -69,6 +69,10 @@
           <mat-icon>add_circle</mat-icon>
         </button>
 
+        <button mat-fab extended color="primary" (click)="exportPdf()">
+          <span>export</span>
+          <mat-icon>add_circle</mat-icon>
+        </button>
       </div>
 
       <table class="w-full" mat-table [dataSource]="dataSource" class="mat-elevation-z0">
